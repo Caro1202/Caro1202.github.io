@@ -1,0 +1,32 @@
+<script>
+  function actualizarFechaHora() {
+      var ahora = new Date();
+      var opciones = { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric', 
+          hour: '2-digit', 
+          minute: '2-digit', 
+          second: '2-digit', 
+          hour12: false
+      };
+      var fechaHoraTexto = ahora.toLocaleString('es-ES', opciones);
+
+      var navbar = document.querySelector('.navbar-nav');  
+      if (navbar) {
+          var fechaElemento = document.getElementById('fecha-hora-nav');
+          if (!fechaElemento) {
+              fechaElemento = document.createElement('li');
+              fechaElemento.classList.add('nav-item');
+              fechaElemento.innerHTML = `<a class="nav-link" href="#">${fechaHoraTexto}</a>`;
+              fechaElemento.id = 'fecha-hora-nav';
+              navbar.appendChild(fechaElemento);
+          } else {
+              fechaElemento.innerHTML = `<a class="nav-link" href="#">${fechaHoraTexto}</a>`;
+          }
+      }
+  }
+  
+  setInterval(actualizarFechaHora, 1000);
+  actualizarFechaHora();
+</script>
